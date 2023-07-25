@@ -1,0 +1,1 @@
+This is a headless Next.js app created by Maciej Bartkowiak
