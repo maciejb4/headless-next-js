@@ -8,15 +8,17 @@ interface SectionProps {
   section: SectionInterface;
 }
 export default function Section({ section }: SectionProps) {
-  const [newsletterMessage, setNewsletterMessage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [newsletterMessage, setNewsletterMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     try {
       const response = await submitData(event);
       if (response?.message) setNewsletterMessage(response.message);
-    } catch (error: any) {
-      setErrorMessage(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      }
     }
   }
 
@@ -68,7 +70,10 @@ export default function Section({ section }: SectionProps) {
             <p className="text-xl md:text-[40px] md:leading-[56px] text-center font-medium pt-[68px] pb-16">
               Sign up for Newsletter
             </p>
-            <form className="flex justify-between h-12 text-sm md:text-base" onSubmit={handleSubmit}>
+            <form
+              className="flex justify-between h-12 text-sm md:text-base"
+              onSubmit={handleSubmit}
+            >
               <input
                 id="email"
                 required

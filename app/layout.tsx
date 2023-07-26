@@ -5,7 +5,7 @@ import Image from "next/image";
 import MenuItem from "@/app/MenuItem";
 import { MenuItemInterface } from "@/app/interface/MenuItemInterface";
 import Link from "next/link";
-import {getPages} from "@/app/utils/dataFetching";
+import { getPages } from "@/app/utils/dataFetching";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +28,7 @@ export default async function RootLayout({
         <div className="mt-6 border-b">
           <nav className="w-full h-[73px] flex justify-between">
             <div className="flex">
-              <Link href={homeItem.url} >
+              <Link href={homeItem.url}>
                 <Image
                   src="/logo.svg"
                   alt="logo"
@@ -37,13 +37,15 @@ export default async function RootLayout({
                   className="ml-8 md:ml-16 mt-2"
                 />
               </Link>
-              <div className="ml-16 md:ml-[97px] mt-3 flex">
+              <div className="ml-14 md:ml-[97px] mt-3 flex">
                 {menuItems.map((menuItem: MenuItemInterface) => (
                   <MenuItem menuItem={menuItem} key={menuItem.id} />
                 ))}
               </div>
             </div>
-            <button className="bg-testimonial-purple rounded-3xl h-10 md:h-12 text-xs md:text-base px-2 md:px-14 mr-2 md:mr-14">Contact us</button>
+            <button className="whitespace-nowrap bg-testimonial-purple rounded-3xl h-8 md:h-12 text-xs md:text-base px-2 md:px-14 mr-2 md:mr-14 mt-2 md:mt-0">
+              Contact us
+            </button>
           </nav>
         </div>
         {children}

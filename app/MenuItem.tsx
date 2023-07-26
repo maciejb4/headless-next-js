@@ -7,12 +7,10 @@ interface MenuItemProps {
 
 export default function MenuItem({ menuItem }: MenuItemProps) {
   const itemName =
-    menuItem?.url.slice(1).charAt(0).toUpperCase() + menuItem.url.slice(2);
+    menuItem.url.slice(1).charAt(0).toUpperCase() + menuItem.url.slice(2);
   return (
     <div className="leading-6 mr-6 md:mr-12">
-      <p>
-        <Link href={`${menuItem.url}`}>{itemName} </Link>
-      </p>
+      <Link href={menuItem.url}>{itemName} </Link>
     </div>
   );
 }

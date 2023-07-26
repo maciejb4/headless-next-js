@@ -1,3 +1,5 @@
+import { url } from "@/app/utils/requestConstants";
+
 export async function submitData(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
 
@@ -5,21 +7,16 @@ export async function submitData(event: React.FormEvent<HTMLFormElement>) {
     "email",
   ) as HTMLInputElement;
 
-  const data = {
-    email: email.value,
-  };
-
-  const response = await fetch(
-    "https://adchitects-cms.herokuapp.com/newsletter",
-    {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        Authorization: "Basic " + btoa("adchitects:jsrulezzz"),
-        "Content-type": "application/json",
-      },
+  const response = await fetch(url + "newsletter", {
+    method: "POST",
+    body: JSON.stringify({
+      email: email.value,
+    }),
+    headers: {
+      Authorization: "Basic " + btoa("adchitects:jsrulezzz"),
+      "Content-type": "application/json",
     },
-  );
+  });
 
   if (!response.ok) {
     throw new Error("HTTP error! status: " + response.status);
